@@ -21,10 +21,8 @@ For every request (IN-…) and open backlog issue, look for:
 - **Same ask twice** → keep the older / backlog issue, add the request id to its `sources`,
   close the newer one as `duplicate` with `duplicate-of: <key>`.
 - **Already shipped** (a `done` issue covers it, or the request says it predates a fix) → close `obsolete`,
-  citing the done key — but only when that done issue's body *names the change that shipped*. A done issue
-  with no fix written in it ("412 reports · merged · closed 04:04 · by —") is no evidence: leave the backlog
-  issue as it is (do not reopen it), keep the request open as its own issue and mark it. Ask of every close:
-  which written rule (spec id) or fact (issue/request id) says it should close? None → it stays open.
+  citing the done key. A backlog `done` stays done: do not reopen it, even when its body is thin. Ask of every
+  close: which written rule (spec id) or fact (issue/request id) says it should close? None → it stays open.
 - **Opposite asks** (one wants X, a client says they rely on not-X) → one `needs-human` issue whose `sources`
   holds both ids; close the other as `duplicate` of it. A client reliance is AUT-2, never agent work.
 - **Asks the specs forbid** (e.g. a modal for errors vs DES-4, two-way sync vs ADR-0002, a raw colour vs DES-2)
@@ -32,7 +30,8 @@ For every request (IN-…) and open backlog issue, look for:
 - **Order** → work that only becomes possible after another issue gets `blocked-by: <key>`
   (e.g. a theme / high-contrast set needs SCHED colour-token migration; text-size needs the type-scale one;
   dense layout needs the spacing one).
-- **Withdrawn** (a later mail takes a request back) → close the original `not planned`, citing the withdrawal id,
+- **Withdrawn** (a later mail takes a request back) → close the original as `obsolete` (not `not planned`: nobody
+  decided against it, the asker took it back), citing the withdrawal id,
   put both ids in its `sources`, close the withdrawal as `duplicate` of it, and drop its mark.
 - **Removals** (hide/drop a field or column) are not AUT-1: AUT-1 only adds. A dropped export column is
   `contradicts-spec` (PRD-3); a hidden UI field is `needs-human`.
