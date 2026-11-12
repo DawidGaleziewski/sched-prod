@@ -32,7 +32,8 @@ For every request (IN-…) and open backlog issue, look for:
   dense layout needs the spacing one).
 - **Withdrawn** (a later mail takes a request back) → close the original as `obsolete` (not `not planned`: nobody
   decided against it, the asker took it back), citing the withdrawal id,
-  put both ids in its `sources`, close the withdrawal as `duplicate` of it, and drop its mark.
+  put both ids in its `sources`, and drop its mark. Close the withdrawal itself as `obsolete` too, citing the
+  request it withdraws — never as `duplicate`: a duplicate asks for the same thing, a withdrawal asks for the opposite.
 - **Removals** (hide/drop a field or column) are not AUT-1: AUT-1 only adds. A dropped export column is
   `contradicts-spec` (PRD-3); a hidden UI field is `needs-human`.
 - **Constraints from one request on another** (e.g. "do not change the CSV date format") become a
