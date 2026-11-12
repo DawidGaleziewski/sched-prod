@@ -21,7 +21,9 @@ For every request (IN-…) and open backlog issue, look for:
 - **Same ask twice** → keep the older / backlog issue, add the request id to its `sources`,
   close the newer one as `duplicate` with `duplicate-of: <key>`.
 - **Already shipped** (a `done` issue covers it, or the request says it predates a fix) → close `obsolete`,
-  citing the done key.
+  citing the done key — but first check that the done issue really shipped: a body that names the change and
+  who closed it. A backlog issue closed by no one ("closed 04:04 · by —") with no fix described is not done:
+  reopen it, mark it, and fold later reports of the same bug into it as duplicates.
 - **Opposite asks** (one wants X, a client says they rely on not-X) → one `needs-human` issue whose `sources`
   holds both ids; close the other as `duplicate` of it. A client reliance is AUT-2, never agent work.
 - **Asks the specs forbid** (e.g. a modal for errors vs DES-4, two-way sync vs ADR-0002, a raw colour vs DES-2)
